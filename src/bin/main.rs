@@ -73,6 +73,7 @@ fn main() {
     }
 
     let mut rng = ark_std::test_rng();
+    dbg!("main");
 
     match (field, merkle) {
         (AvailableFields::Goldilocks1, AvailableMerkle::Blake3) => {
@@ -80,6 +81,7 @@ fn main() {
             use merkle_tree::blake3 as mt;
 
             let (leaf_hash_params, two_to_one_params) = mt::default_config::<F>(&mut rng);
+            dbg!("run whir first");
             run_whir::<F, mt::MerkleTreeParams<F>>(args, leaf_hash_params, two_to_one_params);
         }
 
@@ -296,6 +298,8 @@ fn run_whir_pcs<F, MerkleConfig>(
         committer::Committer, iopattern::WhirIOPattern, parameters::WhirConfig, prover::Prover,
         verifier::Verifier, whir_proof_size, Statement,
     };
+
+    println!("run_whir_pcs, args: Args: {:?}", args);
 
     // Runs as a PCS
     let security_level = args.security_level;

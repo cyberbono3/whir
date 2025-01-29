@@ -47,8 +47,8 @@ where
 
     pub fn prove(
         &self,
-        merlin: &mut Merlin,
-        witness: Witness<F, MerkleConfig>,
+        merlin: &mut Merlin, //rng,safe,transcript
+        witness: Witness<F, MerkleConfig>, // public paramenters
     ) -> ProofResult<WhirProof<MerkleConfig, F>>
     where
         Merlin: FieldChallenges<F> + ByteWriter,
